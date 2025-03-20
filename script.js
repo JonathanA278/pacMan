@@ -1,11 +1,10 @@
 
-//SETUP
 const scoreHTML = window.document.querySelector("#score");
 const canvas = window.document.querySelector("canvas");
 const c2d = canvas.getContext("2d");
 canvas.width = 500;
 canvas.height = 600;
-//VARIABLES
+
 const TILE_SIZE = 40;
 const MOV_SPEED = 4;
 const GHOST_SPEED = MOV_SPEED / 2;
@@ -18,7 +17,7 @@ const keys = {
 let lastKey = "";
 let score = 0;
 let animationFrameId;
-//CLASSES
+
 class PacMan {
   constructor({ position, movement }) {
     this.position = position;
@@ -84,7 +83,7 @@ class Ghost {
     c2d.fillStyle = this.scared ? "blue" : this.color;
     c2d.fill();
     c2d.closePath();
-    //EYES
+   
     c2d.beginPath();
     c2d.arc(
       this.position.x - 5,
@@ -155,7 +154,7 @@ class Block {
     c2d.fillRect(this.position.x, this.position.y, TILE_SIZE, TILE_SIZE);
   }
 }
-//OBJECTS
+
 const pacman = new PacMan({
   position: {
     x: TILE_SIZE + TILE_SIZE / 2,
@@ -398,7 +397,7 @@ map.forEach((row, y) => {
     }
   });
 });
-//COLLISIONS
+
 function circleCollidesCircle({ circle1, circle2 }) {
   return (
     Math.hypot(
@@ -421,7 +420,7 @@ function circleCollidesRectangle({ circle, rectangle }) {
       rectangle.position.x - padding
   );
 }
-//ANIMATION
+
 function animate() {
   animationFrameId = window.requestAnimationFrame(animate);
   c2d.clearRect(0, 0, map[0].length * TILE_SIZE, map.length * TILE_SIZE);
@@ -674,7 +673,8 @@ function animate() {
   }
 }
 animate();
-///CONTROLS////////////////////////////////////////////////////////////////
+
+
 window.addEventListener("keydown", ({ key }) => {
   switch (key) {
     case "ArrowUp":
